@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1
+/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script type="text/javascript">
+            yes = 0;
+            no = 0;
+            function launchExp(num_question,reponse){
+                var reponse = reponse || null;
+                num_question++;
+                reponse ? yes++:no++;
+                console.log("test")
+                console.log(reponse)
+                console.log(num_question)
+                document.getElementById("btn_launch").hidden = "true";
+                switch(num_question) {
+                    case 0:
+                        // On debute l'experience , on fait rien
+                        console.log("TEST")
+                        break;
+                        case 1:
+                        // Question 1
+                        document.getElementById("question_title").textContent = "Question 1";
+                        break;
+                        case 2:
+                            // Question 2 etc ...
+                        document.getElementById("question_title").textContent = "Question 2";
+                        break;
+                    case 3:
+                        document.getElementById("question_title").textContent = "Question 3";
+                        break;
+                    case 4:
+                        document.getElementById("question_title").textContent = "Question 4";
+                        break;
+                    case 5:
+                        document.getElementById("question_title").textContent = "Question 5";
+                        break;
+                    case 6:
+                        document.getElementById("question_title").textContent = "Question 6";
+                        break;
+                    case 7: savedata ({nb:num_question,yes: yes, no: no});    
+                    default: break;
+                    }
+                        document.getElementById("btn_yes").hidden = false;
+                        document.getElementById("btn_no").hidden = false;
+                        
+                        var el = document.getElementById('btn_yes'),
+                        elClone = el.cloneNode(true);
+                        el.parentNode.replaceChild(elClone, el);
+                        
+                        el = document.getElementById('btn_no'),
+                        elClone = el.cloneNode(true);
+                        el.parentNode.replaceChild(elClone, el);
+                        
+                        document.getElementById("btn_yes").addEventListener('click', function() {launchExp(num_question,"oui");});
+                        document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,"non");});
+                    }
+        
+            
+        </script>
+    </head>
+    <body>
+        <div style="position: center;">
+
+            <h3 id="question_title"></h3>
+            <button id="btn_yes" hidden class="btn btn-success">Oui</button>
+            <button id="btn_no" hidden class="btn btn-danger">Non</button>
+            <button id="btn_launch" onclick="launchExp(0)">Debuter l'expérience</button>
+        </div>
+        
+    </body>
+</html>
