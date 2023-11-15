@@ -2,7 +2,7 @@ function savedata (data) {
 
     // Creating a XHR object
     let xhr = new XMLHttpRequest();
-    let url = "savedata.php";
+    let url = "../savedata.php";
 
     // open a connection
     xhr.open ("POST", url, true);
@@ -11,5 +11,15 @@ function savedata (data) {
     xhr.setRequestHeader ("Content-Type", "application/json");
 
     // Sending data with the request
+    console.log(data);
     xhr.send (JSON.stringify (data));
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function isHidden(el) {
+    var style = window.getComputedStyle(el);
+    return (style.display === 'none')
 }
