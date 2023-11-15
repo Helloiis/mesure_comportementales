@@ -1,49 +1,99 @@
 <html>
+
+   <!--
+    Expérience de Vassili Zarch et Helloïs Bernard
+   -->
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1
 /css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="experience.css">
+        <script src="savedata.js" type="application/javascript"></script>
         <script type="text/javascript">
-            yes = 0;
-            no = 0;
+            var yes = no = langue = type = color = String();
+            var randomChar = "12345678";
             function launchExp(num_question,reponse){
+                var color_param;
                 var reponse = reponse || null;
+                var lang_param,amb_param;
                 num_question++;
-                reponse ? yes++:no++;
-                console.log("test")
-                console.log(reponse)
-                console.log(num_question)
+                let randint = getRandomInt(9-num_question);
+                var random = randomChar.charAt(randint);
+                randomChar= randomChar.replace(random,"");
+                if(reponse != null){
+                    if(reponse[0] == "oui" ){
+                        yes += "1;"; 
+                        no += "0;";
+                    }else{ 
+                        no += "1;"
+                        yes += "0;";
+                    }
+                    langue += reponse[1];
+                    type += reponse[2];
+                    color += reponse[3];
+                }
                 document.getElementById("btn_launch").hidden = "true";
-                switch(num_question) {
-                    case 0:
-                        // On debute l'experience , on fait rien
-                        console.log("TEST")
+                document.getElementById("btn_yes").hidden = false;
+                document.getElementById("btn_no").hidden = false;
+
+                console.log(random);
+                switch(parseInt(random)) {
+                    case 1:
+                        // Question fr pas ambigue
+                        document.getElementById("question_title").textContent = "Souhaitez vous \u00eatre heureux ?";
+                        lang_param = "fr;";
+                        amb_param = "no_amb;";
                         break;
-                        case 1:
-                        // Question 1
-                        document.getElementById("question_title").textContent = "Question 1";
-                        break;
-                        case 2:
-                            // Question 2 etc ...
-                        document.getElementById("question_title").textContent = "Question 2";
+                    case 2: 
+                        // Question fr ambigue
+                        document.getElementById("question_title").textContent = "Vous pr\u00e9ferez votre m\u00e8re à votre p\u00e8re.";
+                        lang_param = "fr;";
+                        amb_param = "amb;";
                         break;
                     case 3:
-                        document.getElementById("question_title").textContent = "Question 3";
+                        // Question en pas ambigue
+                        document.getElementById("question_title").textContent = "Do you like chocolate ?";
+                        lang_param = "en;";
+                        amb_param = "no_amb;";
                         break;
                     case 4:
-                        document.getElementById("question_title").textContent = "Question 4";
+                        // Question en ambigue
+                        document.getElementById("question_title").textContent = "Would you rather have the ability to instantly heal from all diseases but never fall in love ?";
+                        lang_param = "en;";
+                        amb_param = "amb;";
                         break;
                     case 5:
-                        document.getElementById("question_title").textContent = "Question 5";
+                        // Question fr pas ambigue (couleurs inversé)
+                        document.getElementById("question_title").textContent = "Aimez vous la coriandre ?";
+                        lang_param = "fr;";
+                        amb_param = "no_amb;";
                         break;
                     case 6:
-                        document.getElementById("question_title").textContent = "Question 6";
+                        // Question fr ambigue (couleur inversé)
+                        document.getElementById("question_title").textContent = "Vous pr\u00e9ferez les chiens aux chats.";
+                        lang_param = "fr;";
+                        amb_param = "amb;";
                         break;
-                    case 7: savedata ({nb:num_question,yes: yes, no: no});    
-                    default: break;
+                    case 7: 
+                        // Question en pas ambigue (couleur inversé)
+                        document.getElementById("question_title").textContent = "Do you like fruits ?";
+                        lang_param = "en;";
+                        amb_param = "no_amb;";
+                        break;
+                    case 8: 
+                        // Question en ambigue (couleur inversé)
+                        document.getElementById("question_title").textContent = "Would you rather be rich but always stressed ?";
+                        lang_param = "en;";
+                        amb_param = "amb;";
+                        break; 
+                    default: 
+                        savedata ({nb:num_question,yes: yes, no: no,lang:langue,type:type,color:color});  
+                        document.getElementById("fin_title").hidden = false;
+                        document.getElementById("btn_yes").hidden = true;
+                        document.getElementById("btn_no").hidden = true;
+                        document.getElementById("question_title").hidden = true;
+                        break;
                     }
-                        document.getElementById("btn_yes").hidden = false;
-                        document.getElementById("btn_no").hidden = false;
-                        
                         var el = document.getElementById('btn_yes'),
                         elClone = el.cloneNode(true);
                         el.parentNode.replaceChild(elClone, el);
@@ -52,20 +102,32 @@
                         elClone = el.cloneNode(true);
                         el.parentNode.replaceChild(elClone, el);
                         
-                        document.getElementById("btn_yes").addEventListener('click', function() {launchExp(num_question,"oui");});
-                        document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,"non");});
+                        if(getRandomInt(2) == 1) {
+                            color_param = "normal;";
+                            document.getElementById("btn_yes").className = "btn btn-success";
+                            document.getElementById("btn_no").className = "btn btn-danger";
+                        } else {
+                            color_param = "inverse;";
+                            document.getElementById("btn_yes").className = "btn btn-danger";
+                            document.getElementById("btn_no").className = "btn btn-success";
+                        }
+                        document.getElementById("btn_yes").addEventListener('click', function() {launchExp(num_question,["oui",lang_param,amb_param,color_param]);});
+                        document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
                     }
         
             
         </script>
     </head>
     <body>
-        <div style="position: center;">
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center" id="container">
 
-            <h3 id="question_title"></h3>
-            <button id="btn_yes" hidden class="btn btn-success">Oui</button>
-            <button id="btn_no" hidden class="btn btn-danger">Non</button>
-            <button id="btn_launch" onclick="launchExp(0)">Debuter l'expérience</button>
+            <h3 id="question_title"></h3>   
+            <div class="flex-row">
+                <button id="btn_yes" hidden class="btn btn-success">Oui</button>
+                <button id="btn_no" hidden class="btn btn-danger">Non</button>
+            </div>
+            <button id="btn_launch" class="btn btn-primary" onclick="launchExp(0)">Debuter l'experience</button>
+            <h3 id="fin_title" hidden>Experience termine ! Vous pouvez fermer la page.</h3>
         </div>
         
     </body>
