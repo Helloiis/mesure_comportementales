@@ -32,9 +32,10 @@
                     type += reponse[2];
                     color += reponse[3];
                 }
-                document.getElementById("btn_launch").hidden = "true";
-                document.getElementById("btn_yes").hidden = false;
-                document.getElementById("btn_no").hidden = false;
+                document.getElementById("btn_launch").hidden = true;
+                document.getElementById("btn_repondre").hidden = false;
+                document.getElementById("btn_yes").hidden = true;
+                document.getElementById("btn_no").hidden = true;
 
                 console.log(random);
                 switch(parseInt(random)) {
@@ -91,6 +92,7 @@
                         document.getElementById("fin_title").hidden = false;
                         document.getElementById("btn_yes").hidden = true;
                         document.getElementById("btn_no").hidden = true;
+                        document.getElementById("btn_repondre").hidden = true;
                         document.getElementById("question_title").hidden = true;
                         break;
                     }
@@ -123,6 +125,7 @@
 
             <h3 id="question_title"></h3>   
             <div class="flex-row">
+                <button id="btn_repondre" hidden onclick="repondre()" class="btn btn-secondary">Répondre</button>
                 <button id="btn_yes" hidden class="btn btn-success">Oui</button>
                 <button id="btn_no" hidden class="btn btn-danger">Non</button>
             </div>
