@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="experience.css">
         <script src="savedata.js" type="application/javascript"></script>
         <script type="text/javascript">
-            /*var yes = no = langue = type = color = String();
+            /* var yes = no = langue = type = color = String();
             var randomChar = "12345678";
             function launchExp(num_question,reponse){
                 var color_param;
@@ -118,7 +118,7 @@
                         document.getElementById("btn_yes").addEventListener('click', function() {launchExp(num_question,["oui",lang_param,amb_param,color_param]);});
                         document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
                     }
-        
+
             */
         </script>
     </head>
@@ -128,21 +128,34 @@
             <h3 id="question_title"></h3>   
             <div class="flex-row">
                 <button id="btn_repondre" hidden onclick="repondre()" class="btn btn-secondary">Répondre</button>
-                <button id="btn_yes" hidden class="btn btn-success">Oui</button>
-                <button id="btn_no" hidden class="btn btn-danger">Non</button>
+                <div>
+                    <button id="btn_yes" hidden class="btn btn-success">Oui</button>
+                    <button id="btn_no" hidden class="btn btn-danger">Non</button>
+                </div>
+                <div>
+                    <button id="btn_no_norder" hidden class="btn btn-danger">Non</button>
+                    <button id="btn_yes_norder" hidden class="btn btn-success">Oui</button>
+                </div>
             </div>
             <p id="info_p">
                 Bienvenue dans notre experience comportementale !
                 <br/>
-                Dans le cadre de notre Master nous devons tester le comportement d'un utilisateur apres modification de certains aspects de son environnement.
+                Dans le cadre de notre Master, nous devons tester le comportement d'un utilisateur après modification de certains aspects de son environnement.
                 <br/>
-                Vous allez etre confronte a une serie de 8 questions aux quels vous drevez repondre par oui ou par non apres les avoir lues attentivement.
+                Vous allez être confronté a une serie de 16 questions auquels vous devez répondre par oui ou par non apres les avoir lues attentivement.
                 Ces questions seront en anglais ou en francais.
                 <br/>
                 <b>En cliquant sur "Debuter l'experience" vous consentez a l'utilisation de vos données a des fins statistiques.</b>
+                <b>Mais tout d'abord quelques informations à renseigner</b>
+                <form id="formulaire">
+                    <label>Nom (ou pseudo):</label>
+                    <input type="text" id="name" name="user_name" value="name"/>
+                    <br/><label>Avez-vous une anomalie de la vision affectant la couleur (daltonisme) ? (Yes/No)</label>
+                    <input type="text" id="respond" value="respond" name="respond"/>
+                </form>
             </p>
             <button id="btn_launch" class="btn btn-primary" onclick="launchExp(0)">Debuter l'experience</button>
-            <h3 id="fin_title" hidden>Experience termine ! Vous pouvez fermer la page.</h3>
+            <h3 id="fin_title" hidden>Experience terminé ! Vous pouvez fermer la page.</h3>
             
         </div>
         

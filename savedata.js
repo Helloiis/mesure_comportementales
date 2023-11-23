@@ -33,8 +33,13 @@ function repondre() {
   // lancer timer
     start_time = new Date().getTime();
     document.getElementById("btn_repondre").hidden = "true";
-    document.getElementById("btn_yes").hidden = false;
-    document.getElementById("btn_no").hidden = false;
+    if(getRandomInt(2)==1){
+        document.getElementById("btn_yes").hidden = false;
+        document.getElementById("btn_no").hidden = false;
+    }else {
+        document.getElementById("btn_yes_norder").hidden = false;
+        document.getElementById("btn_no_norder").hidden = false;
+    }
 }
 
 
@@ -64,10 +69,13 @@ function launchExp(num_question,reponse){
     }
 
     document.getElementById("info_p").hidden = true;
+    document.getElementById("formulaire").hidden = true;
     document.getElementById("btn_launch").hidden = true;
     document.getElementById("btn_repondre").hidden = false;
     document.getElementById("btn_yes").hidden = true;
     document.getElementById("btn_no").hidden = true;
+    document.getElementById("btn_yes_norder").hidden = true;
+    document.getElementById("btn_no_norder").hidden = true;
 
     console.log(random);
     idquestion += "" + random +";";
@@ -122,10 +130,13 @@ function launchExp(num_question,reponse){
             break; 
         default: 
             console.log(time);
-            savedata ({idquestion:idquestion,yes: yes, no: no,lang:langue,type:type,color:color,time:time});  
+            const data = document.getElementById("formulaire");
+            savedata ({data:new FormData(data),idquestion:idquestion,yes: yes, no: no,lang:langue,type:type,color:color,time:time});
             document.getElementById("fin_title").hidden = false;
             document.getElementById("btn_yes").hidden = true;
             document.getElementById("btn_no").hidden = true;
+            document.getElementById("btn_yes_norder").hidden = true;
+            document.getElementById("btn_no_norder").hidden = true;
             document.getElementById("btn_repondre").hidden = true;
             document.getElementById("question_title").hidden = true;
             break;
@@ -137,16 +148,37 @@ function launchExp(num_question,reponse){
             el = document.getElementById('btn_no'),
             elClone = el.cloneNode(true);
             el.parentNode.replaceChild(elClone, el);
+
+            el = document.getElementById('btn_yes_norder'),
+            elClone = el.cloneNode(true);
+            el.parentNode.replaceChild(elClone, el);
+
+            el = document.getElementById('btn_no_norder'),
+            elClone = el.cloneNode(true);
+            el.parentNode.replaceChild(elClone, el);
             
             if(getRandomInt(2) == 1) {
                 color_param = "normal;";
-                document.getElementById("btn_yes").className = "btn btn-success";
-                document.getElementById("btn_no").className = "btn btn-danger";
+                if(getRandomInt(2)==1){
+                    document.getElementById("btn_yes").className = "btn btn-success";
+                    document.getElementById("btn_no").className = "btn btn-danger";
+                }else {
+                    document.getElementById("btn_yes_norder").className = "btn btn-success";
+                    document.getElementById("btn_no_norder").className = "btn btn-danger";
+                }
             } else {
                 color_param = "inverse;";
-                document.getElementById("btn_yes").className = "btn btn-danger";
-                document.getElementById("btn_no").className = "btn btn-success";
+                if(getRandomInt(2)==1){
+                    document.getElementById("btn_yes").className = "btn btn-danger";
+                    document.getElementById("btn_no").className = "btn btn-success";
+                } else {
+                    document.getElementById("btn_yes_norder").className = "btn btn-danger";
+                    document.getElementById("btn_no_norder").className = "btn btn-success";
+                }
+
             }
             document.getElementById("btn_yes").addEventListener('click', function() {launchExp(num_question,["oui",lang_param,amb_param,color_param]);});
             document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
+            document.getElementById("btn_yes_norder").addEventListener('click', function() {launchExp(num_question,["oui",lang_param,amb_param,color_param]);});
+            document.getElementById("btn_no_norder").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
         }
