@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="experience.css">
         <script src="savedata.js" type="application/javascript"></script>
         <script type="text/javascript">
-            var yes = no = langue = type = color = String();
+            /*var yes = no = langue = type = color = String();
             var randomChar = "12345678";
             function launchExp(num_question,reponse){
                 var color_param;
@@ -32,6 +32,8 @@
                     type += reponse[2];
                     color += reponse[3];
                 }
+
+                document.getElementById("info_p").hidden = true;
                 document.getElementById("btn_launch").hidden = true;
                 document.getElementById("btn_repondre").hidden = false;
                 document.getElementById("btn_yes").hidden = true;
@@ -117,7 +119,7 @@
                         document.getElementById("btn_no").addEventListener('click', function() {launchExp(num_question,["non",lang_param,amb_param,color_param]);});
                     }
         
-            
+            */
         </script>
     </head>
     <body>
@@ -129,7 +131,7 @@
                 <button id="btn_yes" hidden class="btn btn-success">Oui</button>
                 <button id="btn_no" hidden class="btn btn-danger">Non</button>
             </div>
-            <p>
+            <p id="info_p">
                 Bienvenue dans notre experience comportementale !
                 <br/>
                 Dans le cadre de notre Master nous devons tester le comportement d'un utilisateur apres modification de certains aspects de son environnement.
