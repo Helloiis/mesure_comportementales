@@ -1,7 +1,7 @@
 var start_time = new Date().getTime(); ;
 var end_time = new Date().getTime(); ;
 var yes = no = langue = type = color = time = idquestion = String();
-var randomChar = "12345678";
+var randomChar = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
 function savedata (data) {
 
@@ -41,16 +41,17 @@ function repondre() {
         document.getElementById("btn_no_norder").hidden = false;
     }
 }
-
+    
 
 function launchExp(num_question,reponse){
     var color_param;
     var reponse = reponse || null;
     var lang_param,amb_param;
     num_question++;
-    let randint = getRandomInt(9-num_question);
-    var random = randomChar.charAt(randint);
-    randomChar= randomChar.replace(random,"");
+    let randint = getRandomInt(17-num_question);
+    var random = randomChar[randint];
+    randomChar= randomChar.filter(item => item !== random);
+    console.log(randomChar);
     if(reponse != null){
       end_time = new Date().getTime();
       let elapse = (end_time-start_time);
@@ -125,6 +126,54 @@ function launchExp(num_question,reponse){
         case 8: 
             // Question en ambigue (couleur inversé)
             document.getElementById("question_title").textContent = "Would you rather be rich but always stressed ?";
+            lang_param = "en;";
+            amb_param = "amb;";
+            break; 
+        case 9:
+            // Question fr pas ambigue
+            document.getElementById("question_title").textContent = "Souhaitez vous \u00eatre riche ?";
+            lang_param = "fr;";
+            amb_param = "no_amb;";
+            break;
+        case 10: 
+            // Question fr ambigue
+            document.getElementById("question_title").textContent = "Vous pr\u00e9ferez \u00eatre ignor\u00e9 pour quelque chose que vous n'avez pas fait plutot que d'\u00eatre reconnu pour quelque chose de mal.";
+            lang_param = "fr;";
+            amb_param = "amb;";
+            break;
+        case 11:
+            // Question en pas ambigue
+            document.getElementById("question_title").textContent = "Do you like water ?";
+            lang_param = "en;";
+            amb_param = "no_amb;";
+            break;
+        case 12:
+            // Question en ambigue
+            document.getElementById("question_title").textContent = "You prefer your friends to your family.";
+            lang_param = "en;";
+            amb_param = "amb;";
+            break;
+        case 13:
+            // Question fr pas ambigue (couleurs inversé)
+            document.getElementById("question_title").textContent = "Aimez vous les animaux ?";
+            lang_param = "fr;";
+            amb_param = "no_amb;";
+            break;
+        case 14:
+            // Question fr ambigue (couleur inversé)
+            document.getElementById("question_title").textContent = "Etes-vous heureux ?";
+            lang_param = "fr;";
+            amb_param = "amb;";
+            break;
+        case 15: 
+            // Question en pas ambigue (couleur inversé)
+            document.getElementById("question_title").textContent = "Do you like your parents ?";
+            lang_param = "en;";
+            amb_param = "no_amb;";
+            break;
+        case 16: 
+            // Question en ambigue (couleur inversé)
+            document.getElementById("question_title").textContent = "Do you think you are a good person ?";
             lang_param = "en;";
             amb_param = "amb;";
             break; 
