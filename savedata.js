@@ -64,7 +64,6 @@ function launchExp(num_question,reponse){
             no += "1;"
             yes += "0;";
         }
-        langue += reponse[1];
         type += reponse[2];
         color += reponse[3];
     }
@@ -84,103 +83,87 @@ function launchExp(num_question,reponse){
         case 1:
             // Question fr pas ambigue
             document.getElementById("question_title").textContent = "Souhaitez vous \u00eatre heureux ?";
-            lang_param = "fr;";
             amb_param = "no_amb;";
             break;
         case 2: 
             // Question fr ambigue
-            document.getElementById("question_title").textContent = "Vous pr\u00e9ferez votre m\u00e8re à votre p\u00e8re.";
-            lang_param = "fr;";
+            document.getElementById("question_title").textContent = "Le nom du célèbre chat de Karl Lagerfeld est Choupette.";
             amb_param = "amb;";
             break;
         case 3:
             // Question en pas ambigue
-            document.getElementById("question_title").textContent = "Do you like chocolate ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "Aimez-vous le chocolat ?";
             amb_param = "no_amb;";
             break;
         case 4:
             // Question en ambigue
-            document.getElementById("question_title").textContent = "Would you rather have the ability to instantly heal from all diseases but never fall in love ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "Sally ride est la première femme à avoir voyagé dans l’espace.";
             amb_param = "amb;";
             break;
         case 5:
             // Question fr pas ambigue (couleurs inversé)
             document.getElementById("question_title").textContent = "Aimez vous la coriandre ?";
-            lang_param = "fr;";
             amb_param = "no_amb;";
             break;
         case 6:
             // Question fr ambigue (couleur inversé)
             document.getElementById("question_title").textContent = "Vous pr\u00e9ferez les chiens aux chats.";
-            lang_param = "fr;";
             amb_param = "amb;";
             break;
         case 7: 
             // Question en pas ambigue (couleur inversé)
-            document.getElementById("question_title").textContent = "Do you like fruits ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "Aimez-vous les fruits ?";
             amb_param = "no_amb;";
             break;
         case 8: 
             // Question en ambigue (couleur inversé)
-            document.getElementById("question_title").textContent = "Would you rather be rich but always stressed ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "Le film 'Seigneur des anneaux : Le Retour du Roi' a obtenue 9 oscars.";
             amb_param = "amb;";
             break; 
         case 9:
             // Question fr pas ambigue
             document.getElementById("question_title").textContent = "Souhaitez vous \u00eatre riche ?";
-            lang_param = "fr;";
             amb_param = "no_amb;";
             break;
         case 10: 
             // Question fr ambigue
-            document.getElementById("question_title").textContent = "Vous pr\u00e9ferez \u00eatre ignor\u00e9 pour quelque chose que vous n'avez pas fait plutot que d'\u00eatre reconnu pour quelque chose de mal.";
-            lang_param = "fr;";
+            document.getElementById("question_title").textContent = "La France est plus grande que l'Allemagne.";
             amb_param = "amb;";
             break;
         case 11:
             // Question en pas ambigue
-            document.getElementById("question_title").textContent = "Do you like water ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "Es-ce que vous aimez l'eau ?";
             amb_param = "no_amb;";
             break;
         case 12:
             // Question en ambigue
-            document.getElementById("question_title").textContent = "You prefer your friends to your family.";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "La capitale de l'Islande est Akureyri.";
             amb_param = "amb;";
             break;
         case 13:
             // Question fr pas ambigue (couleurs inversé)
             document.getElementById("question_title").textContent = "Aimez vous les animaux ?";
-            lang_param = "fr;";
             amb_param = "no_amb;";
             break;
         case 14:
             // Question fr ambigue (couleur inversé)
             document.getElementById("question_title").textContent = "Etes-vous heureux ?";
-            lang_param = "fr;";
             amb_param = "amb;";
             break;
         case 15: 
             // Question en pas ambigue (couleur inversé)
-            document.getElementById("question_title").textContent = "Do you like your parents ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "La vache est un mammifère.";
             amb_param = "no_amb;";
             break;
         case 16: 
             // Question en ambigue (couleur inversé)
-            document.getElementById("question_title").textContent = "Do you think you are a good person ?";
-            lang_param = "en;";
+            document.getElementById("question_title").textContent = "Pensez vous être une bonne personne?";
             amb_param = "amb;";
             break; 
         default: 
             console.log(time);
             const data = document.getElementById("formulaire");
-            savedata ({data:new FormData(data),idquestion:idquestion,yes: yes, no: no,lang:langue,type:type,color:color,time:time});
+            savedata ({data:new FormData(data),idquestion:idquestion,yes: yes, no: no,type:type,color:color,time:time});
             document.getElementById("fin_title").hidden = false;
             document.getElementById("btn_yes").hidden = true;
             document.getElementById("btn_no").hidden = true;
